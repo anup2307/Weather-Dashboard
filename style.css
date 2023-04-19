@@ -1,0 +1,33 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+header{
+    text-align: center;
+    background-color: blue;
+    color:white;
+    background-image: linear-gradient(to right,rgb(100, 97, 180),rgb(54, 54, 189), rgb(0, 0, 125));
+    padding: 10px;
+}
+
+aside{
+    display:flex;
+    flex-direction: column;
+    width:300px;
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+input{
+    height:40px;
+    border-radius: 3px;
+}
+button{
+    margin-top:15px;
+    border-radius: 5px;
+    background-color: rgb(69, 69, 163);
+    height:30px;
+}
+
