@@ -12,33 +12,32 @@
     <script
     src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
     integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-    crossorigin="anonymous"
-  ></script>
+    crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
         <h1 class="bg-gradient">Weather Dashboard</h1>
     </header>
     <main>
-    <aside id="asidebar">
-        <section id="inputsearch">
-            <h3>Search for a City:</h3>
-            <input type="text" id="cityname" name="cityname" placeholder="San Diego"> 
-            <button type="button" id="submit">Search</button>
-            <hr>
+        <aside id="asidebar">
+            <section id="inputsearch">
+                <h3>Search for a City:</h3>
+                <input type="text" id="cityname" name="cityname" placeholder="San Diego"> 
+                <button type="button" id="submit">Search</button>
+                <hr>
+            </section>
+        </aside>
+        <section id="weatherdata">
+            <div id="weatherdetails">
+                <h3 id="h3tagcityname"> </h3>
+                <p id="tempid"></p>
+                <p id="humidityid"></p>
+                <P id="windid"></P>          
+            </div>
+            <h4 id="h45dayforecast"></h4> 
+            <div id="forecastdetails">                      
+            </div>
         </section>
-    </aside>
-    <section id="weatherdata">
-        <div id="weatherdetails">
-            <h3 id="h3tagcityname"> </h3>
-            <p id="tempid"></p>
-            <p id="humidityid"></p>
-            <P id="windid"></P>          
-        </div>
-        <h4 id="h45dayforecast"></h4> 
-        <div id="forecastdetails">                      
-        </div>
-    </section>
     </main>
     <script src="script.js"></script>
 </body>

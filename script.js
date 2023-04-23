@@ -18,6 +18,7 @@ var buttondiv = document.createElement("div");
 buttondiv.setAttribute("style","display:flex; flex-direction:column;");
 aside.append(buttondiv);
 
+// Creates buttons for the city names in the aside bar
 function createbutton(name){   
   var buttoncreate= document.createElement("button");
   var nameuppercase =name.charAt(0).toUpperCase() + name.slice(1);
@@ -26,6 +27,7 @@ function createbutton(name){
   buttondiv.appendChild(buttoncreate);
 }
 
+// Loops through the localstorage and calls the createbutton function for each data.
 function displaycitybuttons(){
   if(parsedlocalstoragedata!==null){  
     for (var i=0;i<parsedlocalstoragedata.length;i++){
@@ -34,6 +36,7 @@ function displaycitybuttons(){
   }
 }
 
+// based on the input from the textbox, calls the weatherapi to fetch data for current day and forecast for 5-days
 function populateweatherdata(city){
   weatherdetails.setAttribute('style','border:2px solid black; height: 200px; margin:10px;');
   var todaydate = dayjs().format("MM/DD/YYYY")
@@ -64,32 +67,32 @@ function populateweatherdata(city){
           var forecastdata = data.list.filter(function(currentdata){
           return currentdata.dt_txt.endsWith("12:00:00");
         })
+          for (var i=0;i<forecastdata.length;i++){
+            var day = document.createElement('div');
+            day.setAttribute('style','background-color: rgb(69, 69, 163); color:white; margin:10px; padding:10px;width:175px;');
+            var daydate = document.createElement('h4');
+            var dayicon = document.createElement('img');
+            var daytemp= document.createElement('p');
+            var dayhumidity= document.createElement('p');
+            var daywind= document.createElement('p');
 
-        for (var i=0;i<forecastdata.length;i++){
-          var day = document.createElement('div');
-          day.setAttribute('style','background-color: rgb(69, 69, 163); color:white; margin:10px; padding:10px; width:200px; ');
-          var daydate = document.createElement('h4');
-          var dayicon = document.createElement('img');
-          var daytemp= document.createElement('p');
-          var dayhumidity= document.createElement('p');
-          var daywind= document.createElement('p');
+            daydate.textContent = dayjs(forecastdata[i].dt_txt).format('MM/DD/YYYY');
+            var forecasticon = forecastdata[i].weather[0].icon ;
+            var forecasticonurl = "https://openweathermap.org/img/wn/"+forecasticon+".png"; 
+            dayicon.setAttribute('src', forecasticonurl);
+            daytemp.textContent = "Temp: "+ forecastdata[i].main.temp;
+            dayhumidity.textContent = "Humidity: " + forecastdata[i].main.humidity;
+            daywind.textContent = "Wind: " + forecastdata[i].wind.speed;
 
-          daydate.textContent = dayjs(forecastdata[i].dt_txt).format('MM/DD/YYYY');
-          var forecasticon = forecastdata[i].weather[0].icon ;
-          var forecasticonurl = "https://openweathermap.org/img/wn/"+forecasticon+".png"; 
-          dayicon.setAttribute('src', forecasticonurl)
-          daytemp.textContent = "Temp: "+ forecastdata[i].main.temp;
-          dayhumidity.textContent = "Humidity: " + forecastdata[i].main.humidity;
-          daywind.textContent = "Wind: " + forecastdata[i].wind.speed;
-
-          day.appendChild(daydate);
-          day.appendChild(dayicon);
-          day.appendChild(daytemp);
-          day.appendChild(daywind);
-          day.appendChild(dayhumidity);
-          forecastdisplay.append(day);
-        }
-      })})
+            day.appendChild(daydate);
+            day.appendChild(dayicon);
+            day.appendChild(daytemp);
+            day.appendChild(daywind);
+            day.appendChild(dayhumidity);
+            forecastdisplay.append(day);
+          }
+        })
+      })
     }
     else
     {
@@ -98,11 +101,7 @@ function populateweatherdata(city){
       return
     }
   });
-
-  };
-
-
-
+};
 
 function findcityweather(event){  
   event.preventDefault() 
@@ -121,6 +120,7 @@ function findcityweather(event){
   }
 }
 
+// Resets all the data fields so the data doesn't keep appending to the existing one
 function deletedata(){
   tempid.textContent = " ";
   humidityid.textContent = " ";
@@ -134,7 +134,6 @@ function weatherdata(event){
   var clickedbuttonname=event.target.innerHTML;
   deletedata();
   populateweatherdata(clickedbuttonname);
-
 }
 
 displaycitybuttons();

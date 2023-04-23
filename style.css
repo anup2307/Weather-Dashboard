@@ -1,12 +1,13 @@
+/* Universal Selector */
 *{
     margin:0;
     padding:0;
     box-sizing: border-box;
 }
 
+/* Element Selectors */
 header{
     text-align: center;
-    background-color: blue;
     color:white;
     background-image: linear-gradient(to right,rgb(100, 97, 180),rgb(54, 54, 189), rgb(0, 0, 125));
     padding: 10px;
@@ -16,9 +17,7 @@ main{
     display: flex;
 }
 
-
-aside{
-    
+aside{  
     display:flex;
     flex-direction: column;
     width:300px;
@@ -30,6 +29,7 @@ input{
     height:40px;
     border-radius: 3px;
 }
+
 button{
     margin-top:15px;
     border-radius: 5px;
@@ -37,10 +37,12 @@ button{
     height:30px;
 }
 
+/* Id Selectors */
 #inputsearch{
     display: flex;
     flex-direction: column; 
 }
+
 #weatherdata{
     display:flex;
     flex-direction: column;
@@ -49,5 +51,4 @@ button{
 
 #forecastdetails{
     display:flex;
-
 }
