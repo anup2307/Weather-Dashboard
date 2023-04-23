@@ -12,7 +12,13 @@ header{
     padding: 10px;
 }
 
+main{
+    display: flex;
+}
+
+
 aside{
+    
     display:flex;
     flex-direction: column;
     width:300px;
@@ -31,3 +37,17 @@ button{
     height:30px;
 }
 
+#inputsearch{
+    display: flex;
+    flex-direction: column; 
+}
+#weatherdata{
+    display:flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+#forecastdetails{
+    display:flex;
+
+}
