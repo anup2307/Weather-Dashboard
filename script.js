@@ -63,9 +63,10 @@ function populateweatherdata(city){
         .then (function(response){
           return response.json();
         })
+       
         .then (function(data){
           var forecastdata = data.list.filter(function(currentdata){
-          return currentdata.dt_txt.endsWith("12:00:00");
+          return currentdata.dt_txt.endsWith("15:00:00");
         })
           for (var i=0;i<forecastdata.length;i++){
             var day = document.createElement('div');
