@@ -42,7 +42,7 @@ function populateweatherdata(city){
   var todaydate = dayjs().format("MM/DD/YYYY")
   var uppercasecity = city.charAt(0).toUpperCase() + city.slice(1);
   h3tagcityname.innerHTML = uppercasecity + (" (" + todaydate + ")")  ;
-  var requestedurl = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=130da94c2079e1360dd161f2374c9fcf"
+  var requestedurl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=130da94c2079e1360dd161f2374c9fcf"
   fetch(requestedurl)
    .then (function(response){
     if (response.ok)
@@ -97,13 +97,16 @@ function populateweatherdata(city){
     else
     {
       alert("Please enter a valid city name");
+      parsedlocalstoragedata.pop();
+      localStorage.setItem('city', JSON.stringify(parsedlocalstoragedata));
       buttondiv.lastElementChild.remove();
-      return
+      return;
     }
   });
 };
 
 function findcityweather(event){  
+
   event.preventDefault() 
   if(parsedlocalstoragedata===null)
   {
@@ -112,9 +115,9 @@ function findcityweather(event){
   var city = cityname.value;
   if(city.length!==0){
     parsedlocalstoragedata.push(city);
-    localStorage.setItem('city', JSON.stringify(parsedlocalstoragedata));   
-    deletedata();
+    localStorage.setItem('city', JSON.stringify(parsedlocalstoragedata));
     createbutton(city);
+    deletedata(); 
     populateweatherdata(city);
     cityname.value="";
   }
