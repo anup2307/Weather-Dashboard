@@ -42,15 +42,15 @@ function populateweatherdata(city){
   var todaydate = dayjs().format("MM/DD/YYYY")
   var uppercasecity = city.charAt(0).toUpperCase() + city.slice(1);
   h3tagcityname.innerHTML = uppercasecity + (" (" + todaydate + ")")  ;
-  var requestedurl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=130da94c2079e1360dd161f2374c9fcf"
+  var requestedurl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&APPID=130da94c2079e1360dd161f2374c9fcf"
   fetch(requestedurl)
    .then (function(response){
     if (response.ok)
     {
       return response.json().then (function(data){
-      tempid.textContent = "Temp: " + data.main.temp;
-      humidityid.textContent = "Humidity: " + data.main.humidity;
-      windid.textContent = "Wind: " + data.wind.speed;
+      tempid.textContent = "Temp: " + data.main.temp + " F";
+      humidityid.textContent = "Humidity: " + data.main.humidity + " %";
+      windid.textContent = "Wind: " + data.wind.speed + " MPH";
       var icon = data.weather[0].icon ;
       var iconurl = "https://openweathermap.org/img/wn/"+icon+".png"; 
       var icondisplay = document.createElement('img');
@@ -58,7 +58,7 @@ function populateweatherdata(city){
       h3tagcityname.append(icondisplay);
   
       fivedayforecast.textContent="5-Day Forecast:"; 
-      var forecasturl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&appid=130da94c2079e1360dd161f2374c9fcf";
+      var forecasturl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid=130da94c2079e1360dd161f2374c9fcf";
       fetch(forecasturl)
         .then (function(response){
           return response.json();
@@ -81,9 +81,9 @@ function populateweatherdata(city){
             var forecasticon = forecastdata[i].weather[0].icon ;
             var forecasticonurl = "https://openweathermap.org/img/wn/"+forecasticon+".png"; 
             dayicon.setAttribute('src', forecasticonurl);
-            daytemp.textContent = "Temp: "+ forecastdata[i].main.temp;
-            dayhumidity.textContent = "Humidity: " + forecastdata[i].main.humidity;
-            daywind.textContent = "Wind: " + forecastdata[i].wind.speed;
+            daytemp.textContent = "Temp: "+ forecastdata[i].main.temp  + " F";
+            dayhumidity.textContent = "Humidity: " + forecastdata[i].main.humidity  + " %";
+            daywind.textContent = "Wind: " + forecastdata[i].wind.speed + " MPH";
 
             day.appendChild(daydate);
             day.appendChild(dayicon);
